@@ -14,8 +14,9 @@ class PlayerArrow {
   }
 
   display() {
+    this.archerAngle = archer.body.angle;
     var pos = this.body.position;
-    var angle = this.body.angle;
+    var angle = this.archerAngle + 90;
 
     push ();
     translate(pos.x,pos.y);
@@ -25,5 +26,16 @@ class PlayerArrow {
     pop ();
   
    
+  }
+
+  shoot(){
+
+    var newAngle = this.archerAngle + 90;
+    newAngle = newAngle * (1/180);
+    console.log(newAngle);
+    var velocity = p5.Vector.fromAngle(newAngle);
+    velocity.mult(0.5);
+    Matter.Body.setStatic(this.body, false);
+    Matter.Body.setVelocity(this.body, { x: velocity.x * (180 / 1), y: velocity.y * (180 / 1) });
   }
 }
