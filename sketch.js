@@ -35,7 +35,7 @@ function setup() {
   World.add(world, player)
 
   archer = new PlayerArcher(320,250, 120, 120);
-  arrow = new PlayerArrow(archer.body.position.x, archer.body.position.y,100,10);
+  arrow = new PlayerArrow(archer.body.position.x, archer.body.position.y,100,10,archer.body.angle);
 }
 
 function draw() {
@@ -53,6 +53,12 @@ function draw() {
   textAlign("center");
   textSize(40);
   text("EPIC ARCHERY", width / 2, 100);
+}
+
+function keyReleased(){
+  if(keyCode === 32){
+    arrow.shoot();
+  }
 }
 
 
